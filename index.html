@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <title>第三方组件应用</title>
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/handsontable/0.34.5/handsontable.min.css" rel="stylesheet" />
+        <style>
+            * {
+                margin: 0;
+                padding: 0;
+                list-style: none;
+            }
+
+            .task {
+                margin: 20px;
+                width: fit-content;
+            }
+
+            .task h3 {
+                text-align: center;
+                margin-bottom: 10px;
+            }
+
+            #taska {
+                clear: both;
+                text-align: center;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="task">
+            <h3>2020语言排行榜</h3>
+            <div id="taska"></div>
+        </div>
+        <div class="task">
+            <div id="taskb" style="width: 600px;height: 300px;"></div>
+        </div>
+    </body>
+</html>
+<script src="http://apps.bdimg.com/libs/jquery/2.1.1/jquery.min.js"></script>
+<script src="https://cdn.bootcss.com/handsontable/0.34.4/handsontable.full.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/echarts@4.7.0/dist/echarts.min.js"></script>
+<script>
+
+    // taska
+    var data = [
+        ["语言名称", "排名", "升降", "变化幅度"],
+        ["Java", 1, "降", "-0.01%"],
+        ["C", 2, "升", "+2.44%"],
+        ["Python", 3, "升", "+1.41%"],
+        ["C++", 4, "降", "-2.58%"],
+        ["C#", 5, "升", "+2.07%"],
+        ["Visual Basic .NET", 6, "升", "-1.17%"],
+        ["JavaScript", 7, "降", "-0.85%"]
+    ];
+    $("#taska").handsontable({
+        data: data,
+        minSpareRows: 0,
+        colHeaders: true,
+        contextMenu: true,
+        colWidths: '170px',
+    });
+
+    // taskb
+    var myChart = echarts.init(document.getElementById("taskb"));
+    var option = {
+        title: {
+            text: 'JavaScript语言排名变化'
+        },
+        xAxis: {
+            type: 'category',
+            data: [2000, 2005, 2010, 2015, 2020]
+        },
+        yAxis: {
+            type: 'value'
+        },
+        series: [{
+            name: '排名',
+            type: 'line',
+            data: [6, 9, 8, 8, 7]
+        }],
+        tooltip: {
+            trigger: 'axis',
+            formatter: function (param) {
+                return '<div style="text-align:center"> 排名<br>' + param[0].name + ": " + param[0].value + '</div>';
+            }
+        }
+    };
+    myChart.setOption(option);
+</script>
