@@ -45,7 +45,6 @@
 
     // taska
     var data = [
-        ["语言名称", "排名", "升降", "变化幅度"],
         ["Java", 1, "降", "-0.01%"],
         ["C", 2, "升", "+2.44%"],
         ["Python", 3, "升", "+1.41%"],
@@ -57,7 +56,7 @@
     $("#taska").handsontable({
         data: data,
         minSpareRows: 0,
-        colHeaders: true,
+        colHeaders: ["语言名称", "排名", "升降", "变化幅度"],
         contextMenu: true,
         colWidths: '170px',
     });
